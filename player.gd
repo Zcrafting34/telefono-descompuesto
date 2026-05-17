@@ -1,6 +1,7 @@
 extends CharacterBody2D
+class_name Player
 
-
+var Healt = 2
 const SPEED = 100.0
 const JUMP_VELOCITY = -300.0
 
@@ -8,7 +9,8 @@ var jumps_left = 2
 
 
 func _physics_process(delta: float) -> void:
-
+	if Healt <= 0:
+		get_tree().reload_current_scene()
 	if not is_on_floor():
 		$AnimatedSprite2D.play("fall")
 		velocity += get_gravity() * delta
@@ -39,8 +41,3 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
-
-
-
-#Me encontre el juego sin jugabilidad, solo un pj que se mueve, entonces como no vi la manera de poner enemigos
-#ni nada parecido vi bien que sea un juego de parkour, subis y llegas a la meta

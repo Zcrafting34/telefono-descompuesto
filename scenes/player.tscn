@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://p8vusrimwhuq"]
 
-[ext_resource type="Script" uid="uid://c8k2vfhh7qh10" path="res://scripts/player.gd" id="1_sweqy"]
+[ext_resource type="Script" uid="uid://c8k2vfhh7qh10" path="res://player.gd" id="1_sweqy"]
 [ext_resource type="Texture2D" uid="uid://css7pxicobejk" path="res://src/assets/SATYR_sprite_sheet/SPRITE_SHEET.png" id="2_2hs0m"]
 [ext_resource type="AudioStream" uid="uid://cs0k1mqdqqtnj" path="res://src/assets/kenney_rpg-audio/Audio/cloth3.ogg" id="3_1jxqw"]
 [ext_resource type="AudioStream" uid="uid://dsmqvvkbr8kdf" path="res://src/assets/kenney_rpg-audio/Audio/cloth4.ogg" id="4_dw050"]
 [ext_resource type="AudioStream" uid="uid://dvkrt7awfvt6j" path="res://src/assets/kenney_rpg-audio/Audio/cloth2.ogg" id="5_b26j0"]
+[ext_resource type="Script" uid="uid://cmwvjpic2mnvo" path="res://scenes/hurtbox.gd" id="6_tuyoq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f1jbl"]
 atlas = ExtResource("2_2hs0m")
@@ -306,6 +307,7 @@ wait_time = 0.5
 
 [node name="detection" type="Area2D" parent="." unique_id=1889789693]
 monitorable = false
+script = ExtResource("6_tuyoq")
 
 [node name="shape" type="CollisionShape2D" parent="detection" unique_id=1479864705]
 position = Vector2(2, 6.5)

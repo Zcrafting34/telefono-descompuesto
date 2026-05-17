@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://ctkbc1yca4bww"]
+
+[ext_resource type="Script" uid="uid://dyiadtse8gb37" path="res://enemigo/enemy.gd" id="1_7k104"]
+[ext_resource type="Script" uid="uid://dtg878u7wbwng" path="res://enemigo/Hitbox.gd" id="2_xcjfj"]
+[ext_resource type="Texture2D" uid="uid://dugu0mqq7ix6e" path="res://enemigo/wasda2.png" id="3_wveuc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3f1ey"]
+size = Vector2(14, 9)
+
+[sub_resource type="Animation" id="Animation_dusj3"]
+resource_name = "Idle"
+length = 0.22223334
+loop_mode = 1
+step = 0.11111111
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.11111111),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_cv2uq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_elxg6"]
+resource_name = "Salto"
+length = 0.55556667
+loop_mode = 1
+step = 0.11111111
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.11111111, 0.22222222, 0.33333334, 0.44444445),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7dunc"]
+_data = {
+&"Idle": SubResource("Animation_dusj3"),
+&"RESET": SubResource("Animation_cv2uq"),
+&"Salto": SubResource("Animation_elxg6")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xcjfj"]
+size = Vector2(2, 3)
+
+[node name="Enemy" type="CharacterBody2D" unique_id=176536042]
+script = ExtResource("1_7k104")
+
+[node name="hitbox" type="Area2D" parent="." unique_id=974697857]
+script = ExtResource("2_xcjfj")
+metadata/_custom_type_script = "uid://dtg878u7wbwng"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox" unique_id=723205343]
+position = Vector2(0, 7.5)
+shape = SubResource("RectangleShape2D_3f1ey")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=34789399]
+texture = ExtResource("3_wveuc")
+hframes = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1813538778]
+libraries/ = SubResource("AnimationLibrary_7dunc")
+
+[node name="Timer" type="Timer" parent="." unique_id=251888963]
+autostart = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=921493670]
+position = Vector2(0, 10.5)
+shape = SubResource("RectangleShape2D_xcjfj")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
