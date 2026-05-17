@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://d2ed1htu6or06"]
+
+[ext_resource type="Script" uid="uid://cd7b2dm38aaed" path="res://area_2d.gd" id="1_dl81w"]
+[ext_resource type="Texture2D" uid="uid://bnldl4fh8i4qk" path="res://src/assets/kenney_ui-pack-pixel-adventure/Tiles/Small tiles/Thick outline/tile_0077.png" id="1_gf172"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5rgpn"]
+size = Vector2(6, 12)
+
+[node name="Area2D" type="Area2D" unique_id=41866983]
+script = ExtResource("1_dl81w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1217890590]
+shape = SubResource("RectangleShape2D_5rgpn")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=277624823]
+texture = ExtResource("1_gf172")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
