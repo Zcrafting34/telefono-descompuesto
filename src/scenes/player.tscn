@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://cs0k1mqdqqtnj" path="res://src/assets/kenney_rpg-audio/Audio/cloth3.ogg" id="3_1jxqw"]
 [ext_resource type="AudioStream" uid="uid://dsmqvvkbr8kdf" path="res://src/assets/kenney_rpg-audio/Audio/cloth4.ogg" id="4_dw050"]
 [ext_resource type="AudioStream" uid="uid://dvkrt7awfvt6j" path="res://src/assets/kenney_rpg-audio/Audio/cloth2.ogg" id="5_b26j0"]
-[ext_resource type="Script" uid="uid://cmwvjpic2mnvo" path="res://scenes/hurtbox.gd" id="6_tuyoq"]
+[ext_resource type="Script" uid="uid://da3u404iryqm2" path="res://src/scripts/pies.gd" id="6_0qy4j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f1jbl"]
 atlas = ExtResource("2_2hs0m")
@@ -266,10 +266,13 @@ random_pitch = 1.0656005
 streams_count = 1
 stream_0/stream = ExtResource("5_b26j0")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qlg0r"]
-size = Vector2(28, 11)
+[sub_resource type="LabelSettings" id="LabelSettings_0qy4j"]
+font_size = 7
 
-[node name="player" type="CharacterBody2D" unique_id=1300393678]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0qy4j"]
+size = Vector2(4, 2)
+
+[node name="player" type="CharacterBody2D" unique_id=1300393678 groups=["player"]]
 script = ExtResource("1_sweqy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=254240248]
@@ -305,12 +308,27 @@ autostart = true
 [node name="cooldown" type="Timer" parent="." unique_id=1471497742]
 wait_time = 0.5
 
-[node name="detection" type="Area2D" parent="." unique_id=1889789693]
-monitorable = false
-script = ExtResource("6_tuyoq")
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=334679364]
 
-[node name="shape" type="CollisionShape2D" parent="detection" unique_id=1479864705]
-position = Vector2(2, 6.5)
-shape = SubResource("RectangleShape2D_qlg0r")
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=94368425]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Control" unique_id=717894257]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Vida: 10"
+label_settings = SubResource("LabelSettings_0qy4j")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=357777389]
+script = ExtResource("6_0qy4j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1161478002]
+position = Vector2(4, 10)
+shape = SubResource("RectangleShape2D_0qy4j")
 
 [connection signal="timeout" from="cooldown" to="." method="finish_attack"]
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

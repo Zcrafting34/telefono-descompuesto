@@ -2,26 +2,18 @@
 
 [ext_resource type="Texture2D" uid="uid://cbniqyfi2rlbl" path="res://src/assets/forest-nature-fantasy-tileset-free/Fantasy Swamp Forest/Free/BG_3/BG_3.png" id="1_ryrav"]
 [ext_resource type="Texture2D" uid="uid://b4dfbuyu54usq" path="res://src/assets/forest-nature-fantasy-tileset-free/Fantasy Swamp Forest/Free/BG_2/BG_2.png" id="2_eow3j"]
-[ext_resource type="PackedScene" uid="uid://ctu0mcvxx5ecp" path="res://scenes/world.tscn" id="5_p57ef"]
-[ext_resource type="PackedScene" uid="uid://p8vusrimwhuq" path="res://scenes/player.tscn" id="6_p57ef"]
-[ext_resource type="PackedScene" uid="uid://ctkbc1yca4bww" path="res://enemigo/enemy.tscn" id="6_u5sy4"]
-[ext_resource type="Texture2D" uid="uid://swu7lxkun26m" path="res://src/assets/SATYR_sprite_sheet/SPRITE_PORTRAIT.png" id="9_vef74"]
+[ext_resource type="PackedScene" uid="uid://ctu0mcvxx5ecp" path="res://src/scenes/world.tscn" id="5_p57ef"]
+[ext_resource type="PackedScene" uid="uid://p8vusrimwhuq" path="res://src/scenes/player.tscn" id="6_p57ef"]
+[ext_resource type="PackedScene" uid="uid://ctkbc1yca4bww" path="res://src/enemigo/enemy.tscn" id="6_u5sy4"]
 
 [node name="game" type="Node" unique_id=2071346229]
 process_mode = 3
 
-[node name="UI" type="CanvasLayer" parent="." unique_id=1419767425]
-
-[node name="portrait" type="TextureRect" parent="UI" unique_id=265762857]
-texture_filter = 1
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("9_vef74")
-stretch_mode = 5
-
-[node name="parrallax" type="Node" parent="." unique_id=2136754722]
+[node name="parrallax" type="Node2D" parent="." unique_id=989242247]
+z_index = 7
 
 [node name="bg3" type="Parallax2D" parent="parrallax" unique_id=1795927198]
+z_index = -14
 scroll_scale = Vector2(0.2, 0.2)
 scroll_offset = Vector2(0, 2)
 
@@ -29,6 +21,7 @@ scroll_offset = Vector2(0, 2)
 texture = ExtResource("1_ryrav")
 
 [node name="bg2" type="Parallax2D" parent="parrallax" unique_id=485347951]
+z_index = -14
 scroll_scale = Vector2(0.5, 0.5)
 scroll_offset = Vector2(0, 2)
 
@@ -40,5 +33,14 @@ texture = ExtResource("2_eow3j")
 [node name="Enemy" parent="." unique_id=176536042 instance=ExtResource("6_u5sy4")]
 position = Vector2(-62, 146)
 
+[node name="Enemy2" parent="." unique_id=2027360251 instance=ExtResource("6_u5sy4")]
+position = Vector2(-693, -31)
+
+[node name="Enemy3" parent="." unique_id=1146007597 instance=ExtResource("6_u5sy4")]
+position = Vector2(-184, -99)
+
+[node name="Enemy4" parent="." unique_id=1303038957 instance=ExtResource("6_u5sy4")]
+position = Vector2(-50, 14)
+
 [node name="player" parent="." unique_id=1300393678 instance=ExtResource("6_p57ef")]
-position = Vector2(-180, 146)
+position = Vector2(-539, 47)
